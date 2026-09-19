@@ -1,10 +1,4 @@
-
 async function  loginWithSpotify() {
-    // 1. generate random string
-    // 2. save it to sessionStorage
-    // 3. hash it
-    // 4. build the Spotify URL
-    // 5. window.location.href = that URL (redirects away)
 
     const code_verify = new Uint8Array(32);
     crypto.getRandomValues(code_verify);
@@ -22,7 +16,7 @@ async function  loginWithSpotify() {
 
     //4. Building a URL string with your client ID, redirect URI, scope, and the challenge? 
     const client_id = "e00d65ee97384a3f80ed9cfd33a3cf25";
-    const redirect_uri = "http://localhost:5173/callback";
+    const redirect_uri = "http://127.0.0.1:5173/callback";
     const scope = "user-top-read";
 
     const params = new URLSearchParams({
@@ -37,8 +31,27 @@ async function  loginWithSpotify() {
     window.location.href = 
     `https://accounts.spotify.com/authorize?${params.toString()}`;
 
+}
+
+async function exchangeCodeForToken(code, verifier){
+    const response = await fetch(
+        `https://accounts.spotify.com/api/token`,{
+        method: 'POST',
+    headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+    },body: new URLSearchParams({
+        client_id: "e00d65ee97384a3f80ed9cfd33a3cf25",
+        grant_type: "authorization_code",
+        code: code,
+        redirect_uri: "http://127.0.0.1:5173/callback",
+        code_verifier: verifier,
+    }).toString(),}
+    );
+
+    const data = await response.json();
+    return data.access_token;
     
 
 }
 
-export default loginWithSpotify
+export { loginWithSpotify, exchangeCodeForToken };

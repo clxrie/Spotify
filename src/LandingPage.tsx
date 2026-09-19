@@ -1,6 +1,8 @@
-import loginWithSpotify from "./auth";
-function LandingPage(){
+import { loginWithSpotify } from './auth'
 
+
+function LandingPage(){
+    
 
 
     return(
