@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getProfile,getTopTracks,getTopArtists } from "./spotify";
+import { getPersonalityType } from "./personality";
 
 function Result(){
     const [profile, setProfile] = useState(null);
@@ -18,6 +19,13 @@ function Result(){
 
             const artistsData = await getTopArtists(token);
             setArtists(artistsData);
+            if (tracksData && artistsData) {
+            const result = getPersonalityType(tracksData, artistsData);
+            console.log(result);
+        }
+
+            const result = getPersonalityType(tracksData, artistsData);
+            console.log(result);
         }
         fetchData();
     }, []);
