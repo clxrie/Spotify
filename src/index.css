@@ -1,1 +1,5 @@
 @import "tailwindcss";
+@font-face {
+    font-family: 'NewRomantics';
+    src: url('/fonts/ROMANTIC.TTF') format('truetype');
+}
