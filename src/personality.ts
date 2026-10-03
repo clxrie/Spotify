@@ -29,6 +29,14 @@ function artistLoyalty(tracks: any[]){
     return (Object.values(counts) as number[]).some(count => count >= 5);
     
 }
+
+const descriptions: Record<string, string> = {
+    "The Anthem Keeper": "You find home in a handful of genres, holding close to the familiar melodies and timeless hits that never lose their place in their heart.",
+    "The Sonic Socialite": "You love to explore in musical world, finding a solace in every genre and a rhythm in every gathering.",
+    "Aesthetic Recluse": "You find refuge in a select few underground sounds, feeling drawn to the obscure, unconventional,and beautifully overlooked corners of music.",
+    "Genreless Soul": "You wander through the hidden corners of countless genres, finding beauty in sounds beyond boundaries, labels, and the mainstream.",
+}; 
+
  function getPersonalityType(tracks: any[], artists: any[]){
     // Step 1: Calculate all four values
     const mainStream = mainstreamScore(tracks);
@@ -88,7 +96,16 @@ function artistLoyalty(tracks: any[]){
         }
     }
 
-    return { quadrant, modifier}
+    return { 
+    quadrant, 
+    modifier, 
+    description: descriptions[quadrant],
+    stats: {
+        genres: diversity,
+        popularity: Math.round(mainStream * 100),
+        obscurity: Math.round(obscurity * 100),
+    }
+};
  }
 
 export { mainstreamScore,obscurityRatio, genreDiversity, artistLoyalty,getPersonalityType };
