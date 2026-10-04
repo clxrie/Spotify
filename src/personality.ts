@@ -36,7 +36,7 @@ const descriptions: Record<string, string> = {
     "Genreless Soul": "You wander across years and artists alike, finding beauty in sounds from every era, never bound to a single voice.",
 };
 
- function getPersonalityType(tracks: any[], artists: any[]){
+ function getPersonalityType(tracks: any[], _artists: any[]){
     // Step 1: Calculate all four values
     const year = averageYear(tracks);
     const variety = artistVariety(tracks);
