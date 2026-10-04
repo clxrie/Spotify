@@ -14,11 +14,11 @@ function Callback(){
         // call exchangeCodeForToken(code, verifier)
         // save the token
         exchangeCodeForToken(code, verifier).then((token) => {
-        sessionStorage.setItem("access_token", token);
-        navigate("/result");
-    });
-        // navigate("/result")
-        navigate("/result");
+            console.log("token from exchange:", token);
+            if (!token) return;
+            sessionStorage.setItem("access_token", token);
+            navigate("/result");
+        });
     }, []);
 
     return(

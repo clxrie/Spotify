@@ -11,8 +11,27 @@ function Result() {
     const token = sessionStorage.getItem("access_token");
 
     useEffect(() => {
+        const saved = sessionStorage.getItem("spotify_data");
+        if (saved) {
+            const data = JSON.parse(saved);
+            setProfile(data.profile);
+            setTracks(data.tracks);
+            setArtists(data.artists);
+            setResult(getPersonalityType(data.tracks, data.artists));
+            return;
+        }
         async function fetchData() {
             const profileData = await getProfile(token);
+            if (!token || profileData?.error?.status === 401) {
+                sessionStorage.removeItem("access_token");
+                sessionStorage.removeItem("spotify_data");
+                window.location.href = "/";
+                return;
+            }
+            if (profileData?.error) {
+                console.log("Spotify error:", profileData.error.status);
+                return;
+            }
             setProfile(profileData);
 
             const tracksData = await getTopTracks(token);
@@ -20,6 +39,15 @@ function Result() {
 
             const artistsData = await getTopArtists(token);
             setArtists(artistsData);
+            
+            const combinedData ={
+                profile : profileData,
+                tracks : tracksData,
+                artists : artistsData
+            };
+
+            const jsonString = JSON.stringify(combinedData);
+            sessionStorage.setItem("spotify_data", jsonString);
 
             if (tracksData && artistsData) {
                 const result = getPersonalityType(tracksData, artistsData);
