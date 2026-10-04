@@ -92,20 +92,23 @@ console.log("stats:", displayResult.stats);
                         {displayProfile.display_name}
                     </p>
                 </div>
+                <div className="mt-6">
+                    <p className="font-mono">SIDE A — YOUR SOUND</p>
                 <div className="flex items-end gap-2">
-                    <span>obscurity</span>
+                    <span>average year</span>
                     <span className="flex-1 border-b-2 border-dotted border-[#848668]/40 mb-1" />
-                    <span>{displayProfile.obscurity}</span>
+                    <span>{displayResult.stats.year}</span>
                 </div>
                 <div className="flex items-end gap-2">
-                    <span>diversity</span>
+                    <span>different artists</span>
                     <span className="flex-1 border-b-2 border-dotted border-[#848668]/40 mb-1" />
-                    <span>{displayProfile.diversity}</span>
+                    <span>{displayResult.stats.variety}%</span>
                 </div>
                 <div className="flex items-end gap-2">
-                    <span>loyalty</span>
+                    <span>from full albums</span>
                     <span className="flex-1 border-b-2 border-dotted border-[#848668]/40 mb-1" />
-                    <span>{displayProfile.loyalty}</span>
+                    <span>{displayResult.stats.albums}%</span>
+                </div>
                 </div>
 
                 <p className="text-lg mt-2 text-[#252629] font-serif pt-5">✦ your top tracks</p>
