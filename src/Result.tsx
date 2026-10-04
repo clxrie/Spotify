@@ -3,10 +3,10 @@ import { getProfile, getTopTracks, getTopArtists } from "./spotify";
 import { getPersonalityType } from "./personality";
 
 function Result() {
-    const [profile, setProfile] = useState(null);
-    const [tracks, setTracks] = useState(null);
-    const [artists, setArtists] = useState(null);
-    const [result, setResult] = useState(null);
+    const [profile, setProfile] = useState<any>(null);
+    const [tracks, setTracks] = useState<any>(null);
+    const [artists, setArtists] = useState<any>(null);
+    const [result, setResult] = useState<any>(null);
 
     const token = sessionStorage.getItem("access_token");
 
