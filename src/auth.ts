@@ -16,7 +16,7 @@ async function  loginWithSpotify() {
 
     //4. Building a URL string with your client ID, redirect URI, scope, and the challenge? 
     const client_id = "e00d65ee97384a3f80ed9cfd33a3cf25";
-    const redirect_uri = "http://127.0.0.1:5173/callback";
+    const redirect_uri = window.location.origin + "/callback";
     const scope = "user-top-read";
 
     const params = new URLSearchParams({
@@ -43,7 +43,7 @@ async function exchangeCodeForToken(code, verifier){
         client_id: "e00d65ee97384a3f80ed9cfd33a3cf25",
         grant_type: "authorization_code",
         code: code,
-        redirect_uri: "http://127.0.0.1:5173/callback",
+        redirect_uri: window.location.origin + "/callback",
         code_verifier: verifier,
     }).toString(),}
     );
