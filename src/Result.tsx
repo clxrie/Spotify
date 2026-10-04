@@ -57,7 +57,7 @@ function Result() {
         fetchData();
     }, []);
 
-    if (!profile || !tracks || !result ||artists) {
+    if (!profile || !tracks || !result || !artists) {
     return (
         <div className="min-h-screen flex items-center justify-center bg-[#D9D3C5]/80 text-[#848668]">
             Loading…
@@ -68,8 +68,10 @@ function Result() {
 const displayResult = result;
 const displayProfile = profile;
 const displayTracks = tracks;
+console.log("stats:", displayResult.stats);
 
     return (
+        
         <div className="min-h-screen w-full bg-[#D9D3C5]/80 flex flex-col items-center p-4 md:p-8 overflow-x-hidden">
         <div className="w-full max-w-md md:bg-[#E8E4D8] md:rounded-[2rem] md:shadow-xl md:p-6 md:my-10 overflow-hidden">
 
@@ -90,16 +92,22 @@ const displayTracks = tracks;
                         {displayProfile.display_name}
                     </p>
                 </div>
-                <div className="flex justify-center gap-6 mt-6">
-                    <div>
-                        <p className="text-2xl font-bold text-[#848668]">12</p>
-                        <p className="text-xs text-[#252629]">genres</p>
-                    </div>
-                    <div>
-                        <p className="text-2xl font-bold text-[#848668]">34</p>
-                        <p className="text-xs text-[#252629]">avg popularity</p>
-                    </div>
+                <div className="flex items-end gap-2">
+                    <span>obscurity</span>
+                    <span className="flex-1 border-b-2 border-dotted border-[#848668]/40 mb-1" />
+                    <span>{displayProfile.obscurity}</span>
                 </div>
+                <div className="flex items-end gap-2">
+                    <span>diversity</span>
+                    <span className="flex-1 border-b-2 border-dotted border-[#848668]/40 mb-1" />
+                    <span>{displayProfile.diversity}</span>
+                </div>
+                <div className="flex items-end gap-2">
+                    <span>loyalty</span>
+                    <span className="flex-1 border-b-2 border-dotted border-[#848668]/40 mb-1" />
+                    <span>{displayProfile.loyalty}</span>
+                </div>
+
                 <p className="text-lg mt-2 text-[#252629] font-serif pt-5">✦ your top tracks</p>
             </div>
 
@@ -144,14 +152,6 @@ const displayTracks = tracks;
                     </div>
                 ))}
             </div>
-        </div>
-
-                {/* Pill bar */}
-        <div className="w-full max-w-md mx-auto mt-6 flex items-center gap-3 bg-[#A3A88B] rounded-full pl-4 pr-1.5 py-1.5">
-            <svg viewBox="0 0 24 24" className="w-5 h-5 shrink-0 fill-none stroke-[#F1EFE6] stroke-[2.5]"><circle cx="11" cy="11" r="6" /><path d="M20 20l-4.5-4.5" /></svg>
-            <p className="flex-1 bg-[#F1EFE6] rounded-full px-4 py-2 text-xs font-bold uppercase text-[#848668] truncate">
-                {displayProfile.display_name}’s sound, in melodies
-            </p>
         </div>
     </div>
     </div>
