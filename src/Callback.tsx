@@ -13,6 +13,7 @@ function Callback(){
         const verifier = sessionStorage.getItem("code_verifier");
         // call exchangeCodeForToken(code, verifier)
         // save the token
+        if (!code || !verifier) return;
         exchangeCodeForToken(code, verifier).then((token) => {
             console.log("token from exchange:", token);
             if (!token) return;

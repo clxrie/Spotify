@@ -15,11 +15,11 @@ function artistLoyalty(tracks: any[]){
     
 }
 
-function averageYear(tracks){
-     return tracks.reduce((sum, t) => sum + Number(t.album.release_date.slice(0, 4)), 0) / tracks.length;
+function averageYear(tracks: any[]){
+     return tracks.reduce((sum: number, t: any) => sum + Number(t.album.release_date.slice(0, 4)), 0) / tracks.length;
 }
 
-function artistVariety(tracks){
+function artistVariety(tracks: any[]){
     const trackFirstArtistName = tracks.map(t => t.artists[0].name);
     const names = new Set(trackFirstArtistName).size;
     return names/ tracks.length;

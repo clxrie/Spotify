@@ -21,6 +21,10 @@ function Result() {
             return;
         }
         async function fetchData() {
+            if (!token) {
+                window.location.href = "/";
+                return;
+            }
             const profileData = await getProfile(token);
             if (!token || profileData?.error?.status === 401) {
                 sessionStorage.removeItem("access_token");
@@ -145,7 +149,7 @@ console.log("stats:", displayResult.stats);
 
                 {/* Tracks */}
             <div className="relative z-10 ml-auto w-[56%] py-10 flex flex-col gap-2.5">
-                {displayTracks.slice(0, 5).map((track, i) => (
+                {displayTracks.slice(0, 5).map((track: any, i: number) => (
                     <div key={i} className="flex items-center gap-2.5 bg-[#A3A88B] rounded-xl p-2">
                         <img src={track.album?.images?.[0]?.url} alt={track.name} className="w-11 h-11 rounded-md object-cover shrink-0" />
                         <div className="min-w-0">

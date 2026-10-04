@@ -33,7 +33,7 @@ async function  loginWithSpotify() {
 
 }
 
-async function exchangeCodeForToken(code, verifier){
+async function exchangeCodeForToken(code: string, verifier: string){
     const response = await fetch(
         `https://accounts.spotify.com/api/token`,{
         method: 'POST',

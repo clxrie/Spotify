@@ -1,4 +1,4 @@
-async function getProfile(token){
+async function getProfile(token: string){
     const response = await fetch('https://api.spotify.com/v1/me',{
         method: 'GET',
        headers: {
@@ -9,7 +9,7 @@ async function getProfile(token){
     return data; //what should I write here??
 }
 
-async function getTopTracks(token){
+async function getTopTracks(token: string){
     const response = await fetch('https://api.spotify.com/v1/me/top/tracks?time_range=medium_term&limit=50',{
         method: 'GET',
        headers: {
@@ -21,7 +21,7 @@ async function getTopTracks(token){
 }
 
 
-async function getTopArtists(token){
+async function getTopArtists(token: string){
     const response = await fetch('https://api.spotify.com/v1/me/top/artists?time_range=medium_term&limit=50',{
         method: 'GET',
        headers: {
